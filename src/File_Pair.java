@@ -55,31 +55,31 @@ public class File_Pair {
 //            String s = it.next();
 //            System.out.println("2222   "+s);
 //        }
-        for (i = 0, k = 0; i <= objArray1.size() - matchingLength; i++) {
+        for (i = 0, k = 0; i <= objArray1.size() - matchingLength; i ++) {
             if (objArray22.contains(objArray11.get(i))) {
 //                System.out.println(objArray11.get(i));
                 String str0 = "";
                 str0 += objArray11.get(i);
-                int m = 0, n = i + 1;
+                int n = i + 1;
                 while (true) {
                     if (objArray22.contains(objArray11.get(n))) n ++;
                     else break;
                 }
                 n = n - i;
                 int num = n/4;
-                int wnum = n % 4;System.out.println(n);
+                int wnum = n % 4;
+                System.out.println(n);
                 System.out.println(num);
                 System.out.println(wnum);
                 for (int j = 1; j <= num; j ++)     str0 += objArray11.get(j*4+i);
-                i += num;
-                for (int j = i + num*4 + 1; j <= i + wnum; j ++)    str0 += objArray1.get(j);
+                for (int j = i + (num+1)*4; j < i + (num+1)*4 + wnum - 1; j ++)    str0 += objArray1.get(j);
                 System.out.println(str0);
                 outobjArray11.add(k++, "*" + str0 + "*");
-                i = i + num * 4 + wnum + 1;
+                i = i + (num+1) * 4 + wnum - 1;
             }
              else {
                 if (i == objArray1.size() - matchingLength) {
-                    outobjArray11.add(k++, "*" + objArray11.get(i) + "*");
+                    outobjArray11.add(k++, objArray11.get(i) + "*");
                 }else {
                     outobjArray11.add(k++, " " + objArray1.get(i) + " ");
                 }
