@@ -1,2 +1,2 @@
-public class Matching {
+public abstract class Matching {
 }

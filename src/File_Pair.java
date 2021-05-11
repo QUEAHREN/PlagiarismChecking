@@ -2,53 +2,69 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class File_Pair {
 
-    private String File_Name1;
-    private String File_Name2;
-    private String content1 = "";
-    private String content2 = "";
+    private MyFile File1;
+    private MyFile File2;
 
-
-    public File_Pair(String File_Name1, String File_Name2){
-        this.File_Name1 = File_Name1;
-        this.File_Name2 = File_Name2;
+    public File_Pair(MyFile File1, MyFile File2){
+        this.File1 = File1;
+        this.File2 = File2;
     }
 
-    public String getContent1() {
-        return content1;
-    }
-    public String getContent2() {
-        return content2;
-    }
-    public void readTxt() {
-        this.content1 = conRead(File_Name1);
-        this.content2 = conRead(File_Name2);
-    }
+    public void phraseMatching() {
+        int matchingLength = 4;
+        ArrayList<String> objArray1 = File1.getObjArray();
+        ArrayList<String> objArray2 = File2.getObjArray();
+        ArrayList<String> objArray11 = new ArrayList<String>();
+        ArrayList<String> objArray22 = new ArrayList<String>();
+        ArrayList<String> outobjArray11 = new ArrayList<String>();
+        ArrayList<String> outobjArray22 = new ArrayList<String>();
+        StringBuilder sb = new StringBuilder();
+        int i, k;
 
-    public String conRead(String File_Name){
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(File_Name));
-            String line = "";
-            String content = "";
-            while((line = in.readLine()) != null) {
-                line = line.trim();
-                if (!line.equals(" "))  {
-                    content += line;
+        for (i = 0; i <= objArray1.size() - matchingLength; i++) {
+            String str0 = "";
+            for (k = i; k < i + matchingLength; k++) {
+                sb.append(str0).append(objArray1.get(k));
+                sb.append(str0).append(" ");
+
+                objArray11.add(i, str0);
+            }
+            for (i = 0; i <= objArray2.size() - matchingLength; i++) {
+                str0 = "";
+                for (k = i; k < i + matchingLength; k++) {
+                    sb.append(str0).append(objArray2.get(k));
+                    sb.append(str0).append(" ");
+                }
+                objArray22.add(i, str0);
+            }
+
+            for (i = 0, k = 0; i <= objArray1.size() - matchingLength; i++) {
+                if (objArray22.contains(objArray11.get(i))) {
+                    outobjArray11.add(k++, "*" + objArray11.get(i) + "*");
+                    i += matchingLength - 1;
+
+                } else {
+                    if (i == objArray1.size() - matchingLength) {
+                        outobjArray11.add(k++, "*" + objArray11.get(i) + "*");
+                    }
+
+                    outobjArray11.add(k++, " " + objArray1.get(i) + " ");
                 }
             }
-            content = content.toLowerCase();
-            content = content.replaceAll("\"[^\"]+\"", ""); //strips out anything in quotes
-            content = content.replaceAll("[^a-zA-Z ]", "");
-            in.close();
-            return content;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
+            System.out.println("why?");
+            for (i = 0; i <= outobjArray11.size(); i++)
+                System.out.println(outobjArray11.get(i));
+
         }
-        return "";
     }
+
+
+
+
+
 
 }

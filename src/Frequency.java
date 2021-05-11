@@ -1,2 +1,3 @@
-public class Frequency {
+public abstract class Frequency {
+
 }
