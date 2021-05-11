@@ -29,6 +29,13 @@ public class MyFile {
         return content;
     }
     public ArrayList<String> getObjArray() { return objArray; }
+    public void printObjArray() {
+        for (Iterator<String> it = objArray.iterator(); it.hasNext(); ) {
+            String s = it.next();
+            System.out.println(s);
+        }
+    }
+
 
     public void conRead(String File_Name) {
         try {
@@ -93,15 +100,15 @@ public class MyFile {
 
         for (Map.Entry<String, Integer> entry : list) {
             if (num >= 1){
-                System.out.println(entry.getKey() + ":" + entry.getValue());
+//                System.out.println(entry.getKey() + ":" + entry.getValue());
                 num --;
             }
             total += entry.getValue();
             uniqueTotal++;
 
         }
-        System.out.println("Total:" + total);
-        System.out.println("uniqueTotal:" + uniqueTotal);
+//        System.out.println("Total:" + total);
+//        System.out.println("uniqueTotal:" + uniqueTotal);
 
     }
 
