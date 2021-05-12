@@ -24,7 +24,8 @@ public class Client {
         System.out.println(f1_2.getPhrase_Match_1_2());
         System.out.println(f1_2.getPhrase_Match_2_1());
         GUIText GT1= new GUIText();
-        GT1.showText(f1_3);
+        GT1.mainUI();
+//        GT1.showText(f1_3);
     }
 
 }

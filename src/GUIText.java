@@ -3,6 +3,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -10,7 +12,25 @@ public class GUIText {
 
     JFrame frame = new JFrame("MyCheck");
     JPanel panel = new JPanel();
+    public void mainUI(){
+        final JTextArea textArea = new JTextArea(5, 10);
+        textArea.setLineWrap(true);
+        panel.add(textArea);
+        JButton btn = new JButton("提交");
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("提交: " + textArea.getText());
+                JOptionPane.showMessageDialog (panel, "提示消息", "标题",JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        panel.add(btn);
 
+        frame.setContentPane(panel);
+        frame.setVisible(true);
+
+
+    }
     public void showText(File_Pair pair){
 
         JPanel paneltxt = new JPanel();

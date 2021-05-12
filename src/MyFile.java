@@ -124,5 +124,7 @@ public class MyFile {
 //        System.out.println("uniqueTotal:" + uniqueTotal);
 
     }
-
+    public int findWordFrequency(String keyword){
+        return frequency.get(keyword);
+    }
 }
