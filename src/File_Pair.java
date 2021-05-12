@@ -13,8 +13,13 @@ public class File_Pair {
     ArrayList<String> phrase2 = new ArrayList<String>();
     ArrayList<String> objArray1 = new ArrayList<String>();
     ArrayList<String> objArray2 = new ArrayList<String>();
+    private ArrayList<String> matchPhrase1 = new ArrayList<String>();
+    private ArrayList<String> matchPhrase2 = new ArrayList<String>();
     String outContent1;
     String outContent2;
+    String content1;
+    String content2;
+
     private double phrase_Match_1_2;
     private double phrase_Match_2_1;
 
@@ -26,6 +31,12 @@ public class File_Pair {
         objArray2 = File2.getObjArray();
     }
 
+    public MyFile getFile1() {
+        return File1;
+    }
+    public MyFile getFile2() {
+        return File2;
+    }
     public double getPhrase_Match_1_2(){
         return phrase_Match_1_2;
     }
@@ -37,6 +48,24 @@ public class File_Pair {
     }
     public String getOutContent2() {
         return outContent2;
+    }
+    public String getContent1() {
+        return content1;
+    }
+    public String getContent2() {
+        return content2;
+    }
+    public void setContent1(String content1) {
+        this.content1 = content1;
+    }
+    public void setContent2(String content2) {
+        this.content2 = content2;
+    }
+    public ArrayList<String> getMatchPhrase1() {
+        return matchPhrase1;
+    }
+    public ArrayList<String> getMatchPhrase2() {
+        return matchPhrase2;
     }
 
     public void phraseMatching(int matchingLength) {
@@ -125,29 +154,90 @@ public class File_Pair {
 //            System.out.println(s);
 //        }
 
+
+
+
+
+
+        //转成文字
         StringBuilder str0 = new StringBuilder();
-        int marchwords1 = 0;
+        String str1 = "";
+        StringBuilder str2 = new StringBuilder();
+        int marchwords1 = 0, tag1 = 0;
         for (i = 0; i < objArray1.size(); i++){
-            if (flag1[i] == 0)  str0.append(objArray1.get(i)).append(" ");
+            str2.append(objArray1.get(i)).append(" ");
+            if (flag1[i] == 0){
+                tag1 = 0;
+                str0.append(objArray1.get(i)).append(" ");
+
+            }
             else{
+                tag1 ++;
+                if (tag1 == 1){
+                    str0.append("*");
+                    if(!str1.isEmpty()) {
+                        matchPhrase1.add(str1);
+                        str1 = "";
+                    }
+                }
                 str0.append(objArray1.get(i)).append("*");
+                str1 += objArray1.get(i) + " ";
                 marchwords1 ++;
             }
-
         }
-        System.out.println(str0);
+        matchPhrase1.add(str1);
         this.outContent1 = str0.toString();
+        setContent1(str2.toString());
 
+//        for (Iterator<String> it = marchPhrase1.iterator(); it.hasNext(); ) {
+//            String s = it.next();
+//            System.out.println(s);
+//        }
         str0 = new StringBuilder();
-        int marchwords2 = 0;
+        str1 = "";
+        str2 = new StringBuilder();
+        int marchwords2 = 0, tag2 = 0;
         for (i = 0; i < objArray2.size(); i++){
-            if (flag2[i] == 0)  str0.append(objArray2.get(i)).append(" ");
-            else  {
+            str2.append(objArray2.get(i)).append(" ");
+            if (flag2[i] == 0){
+                tag2 = 0;
+                str0.append(objArray2.get(i)).append(" ");
+
+            }
+            else{
+                tag2 ++;
+                if (tag2 == 1){
+                    str0.append("*");
+                    if(!str1.isEmpty()) {
+                        matchPhrase2.add(str1);
+                        str1 = "";
+                    }
+                }
                 str0.append(objArray2.get(i)).append("*");
+                str1 += objArray2.get(i) + " ";
                 marchwords2 ++;
             }
         }
-        System.out.println(str0);
+        matchPhrase2.add(str1);
+        this.outContent2 = str0.toString();
+        setContent2(str2.toString());
+
+
+//        str0 = new StringBuilder();
+//        str2 = new StringBuilder();
+//        int marchwords2 = 0;
+//        for (i = 0; i < objArray2.size(); i++){
+//            str2.append(objArray2.get(i)).append(" ");
+//            if (flag2[i] == 0)  str0.append(objArray2.get(i)).append(" ");
+//            else  {
+//                str0.append(objArray2.get(i)).append("*");
+//                marchwords2 ++;
+//            }
+//        }
+//        setContent2(str2.toString());
+
+
+//        System.out.println(str0);
         this.outContent2 = str0.toString();
 
         this.phrase_Match_1_2 = ((double)marchwords1/File1.getTotalWords())*100;
