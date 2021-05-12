@@ -51,14 +51,14 @@ public class MyFile {
                     content += line;
                 }
             }
-            String contentx = content;
-            String[] sentence = contentx.split("\\.");
-            for (int i = 0; i < sentence.length; i ++) {
-                System.out.println(i);
-                sentence[i] = sentence[i].replaceAll("\"[^\"]+\"", ""); //strips out anything in quotes
-                sentence[i] = sentence[i].replaceAll("[^a-zA-Z ]", "");
-                System.out.println(sentence[i]);
-            }
+//            String contentx = content;
+//            String[] sentence = contentx.split("\\.");
+//            for (int i = 0; i < sentence.length; i ++) {
+//                System.out.println(i);
+//                sentence[i] = sentence[i].replaceAll("\"[^\"]+\"", ""); //strips out anything in quotes
+//                sentence[i] = sentence[i].replaceAll("[^a-zA-Z ]", "");
+//                System.out.println(sentence[i]);
+//            }
             this.originalContent = content;
 
             content = content.toLowerCase();
@@ -105,8 +105,8 @@ public class MyFile {
         // map.EntrySet(),实现了Set接口，里面存放的是键值对.
         list = new ArrayList<Map.Entry<String,Integer>>(frequency.entrySet());
 
-        Collections.sort(list,valueComparator);
-        System.out.println("------------map 按照 value 降序排序 --------------------");
+        Collections.sort(list, valueComparator);
+//        System.out.println("------------map 按照 value 降序排序 --------------------");
 
         int total = 0, uniqueTotal = 0, num = 10;
 
