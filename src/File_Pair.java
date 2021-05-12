@@ -7,8 +7,8 @@ import java.util.Iterator;
 
 public class File_Pair {
 
-    private final MyFile File1;
-    private final MyFile File2;
+    private MyFile File1;
+    private MyFile File2;
     ArrayList<String> phrase1 = new ArrayList<String>();
     ArrayList<String> phrase2 = new ArrayList<String>();
     ArrayList<String> objArray1 = new ArrayList<String>();
@@ -29,8 +29,13 @@ public class File_Pair {
         this.File2 = File2;
         objArray1 = File1.getObjArray();
         objArray2 = File2.getObjArray();
+
     }
 
+    public void setFile(MyFile File1, MyFile File2) {
+        this.File1 = File1;
+        this.File2 = File2;
+    }
     public MyFile getFile1() {
         return File1;
     }
@@ -70,7 +75,8 @@ public class File_Pair {
 
     public void phraseMatching(int matchingLength) {
 
-
+        this.matchPhrase1 = new ArrayList<String>();
+        this.matchPhrase2 = new ArrayList<String>();
         ArrayList<String> objArray11 = new ArrayList<String>();
         ArrayList<String> objArray22 = new ArrayList<String>();
 //        ArrayList<String> outobjArray11 = new ArrayList<String>();
@@ -99,27 +105,26 @@ public class File_Pair {
 //            String s = it.next();
 //            System.out.println("2222   "+s);
 //        }
+
         int[] flag1 = new int[objArray1.size()];
         for (i = 0; i < objArray1.size(); i ++)    flag1[i] = 0;
 
-        for (i = 0; i <= objArray1.size() - matchingLength; i++)
+        for (i = 0; i <= objArray1.size() - matchingLength; i++) {
             if (objArray22.contains(objArray11.get(i))) {
+                System.out.println(objArray11.get(i));
                 phrase1.add(objArray11.get(i));
-                flag1[i] = 1;
-                flag1[i+1] = 1;
-                flag1[i+2] = 1;
-            }
+                for (int p = 0; p < matchingLength; p ++)   flag1[i+p] = 1;
 
-        int[] flag2 = new int[objArray1.size()];
+            }
+        }
+
+        int[] flag2 = new int[objArray1.size() + 100];
         for (i = 0; i < objArray2.size(); i ++)    flag2[i] = 0;
 
         for (i = 0; i <= objArray2.size() - matchingLength; i++)
             if (objArray11.contains(objArray22.get(i))) {
                 phrase2.add(objArray22.get(i));
-
-                flag2[i] = 1;
-                flag2[i+1] = 1;
-                flag2[i+2] = 1;
+                for (int p = 0; p < matchingLength; p ++)   flag2[i+p] = 1;
             }
 //                System.out.println(objArray11.get(i));
 //                String str0 = "";
@@ -189,10 +194,11 @@ public class File_Pair {
         this.outContent1 = str0.toString();
         setContent1(str2.toString());
 
-//        for (Iterator<String> it = marchPhrase1.iterator(); it.hasNext(); ) {
+//        for (Iterator<String> it = matchPhrase1.iterator(); it.hasNext(); ) {
 //            String s = it.next();
 //            System.out.println(s);
 //        }
+
         str0 = new StringBuilder();
         str1 = "";
         str2 = new StringBuilder();
@@ -249,12 +255,7 @@ public class File_Pair {
 
     }
 
-    public void outPutcontent(){
 
-
-
-
-    }
 
 }
 

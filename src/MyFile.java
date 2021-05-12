@@ -3,21 +3,31 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+/*
+        Each file corresponds to a myfile class,
+        which contains the objects and methods we need.
+*/
 
 public class MyFile {
 
     private String File_Name;
-    private String originalContent = "";
-    private String content = "";
+    private String originalContent = "";    //Original text content
+    private String content = "";            //Text contains content without quotation marks. Text is case insensitive.
     private int totalWords;
-    private ArrayList<String> objArray = new ArrayList<String>();;
+    private ArrayList<String> objArray = new ArrayList<String>();
     Map<String,Integer> frequency = new HashMap<String, Integer>();
     List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String,Integer>>();
 
+//    Constructors
     public MyFile(String File_Name){
         this.File_Name = File_Name;
         conRead(File_Name);
         countFrequency();
+    }
+
+//    Returns the object in the class
+    public List<Map.Entry<String, Integer>> getList() {
+        return list;
     }
     public String getFile_Name() {
         return File_Name;
@@ -32,6 +42,7 @@ public class MyFile {
         return totalWords;
     }
     public ArrayList<String> getObjArray() { return objArray; }
+
     public void printObjArray() {
         for (Iterator<String> it = objArray.iterator(); it.hasNext(); ) {
             String s = it.next();
@@ -51,14 +62,7 @@ public class MyFile {
                     content += line;
                 }
             }
-//            String contentx = content;
-//            String[] sentence = contentx.split("\\.");
-//            for (int i = 0; i < sentence.length; i ++) {
-//                System.out.println(i);
-//                sentence[i] = sentence[i].replaceAll("\"[^\"]+\"", ""); //strips out anything in quotes
-//                sentence[i] = sentence[i].replaceAll("[^a-zA-Z ]", "");
-//                System.out.println(sentence[i]);
-//            }
+
             this.originalContent = content;
 
             content = content.toLowerCase();
@@ -108,13 +112,9 @@ public class MyFile {
         Collections.sort(list, valueComparator);
 //        System.out.println("------------map 按照 value 降序排序 --------------------");
 
-        int total = 0, uniqueTotal = 0, num = 10;
+        int total = 0, uniqueTotal = 0;
 
         for (Map.Entry<String, Integer> entry : list) {
-            if (num >= 1){
-//                System.out.println(entry.getKey() + ":" + entry.getValue());
-                num --;
-            }
             total += entry.getValue();
             uniqueTotal++;
 
@@ -123,8 +123,10 @@ public class MyFile {
 //        System.out.println("Total:" + total);
 //        System.out.println("uniqueTotal:" + uniqueTotal);
 
+
     }
     public int findWordFrequency(String keyword){
+        if (frequency.get(keyword) == null) return -1;
         return frequency.get(keyword);
     }
 }
