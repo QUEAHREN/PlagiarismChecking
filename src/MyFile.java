@@ -28,6 +28,9 @@ public class MyFile {
     public String getContent() {
         return content;
     }
+    public int getTotalWords() {
+        return totalWords;
+    }
     public ArrayList<String> getObjArray() { return objArray; }
     public void printObjArray() {
         for (Iterator<String> it = objArray.iterator(); it.hasNext(); ) {
@@ -48,12 +51,21 @@ public class MyFile {
                     content += line;
                 }
             }
+            String contentx = content;
+            String[] sentence = contentx.split("\\.");
+            for (int i = 0; i < sentence.length; i ++) {
+                System.out.println(i);
+                sentence[i] = sentence[i].replaceAll("\"[^\"]+\"", ""); //strips out anything in quotes
+                sentence[i] = sentence[i].replaceAll("[^a-zA-Z ]", "");
+                System.out.println(sentence[i]);
+            }
             this.originalContent = content;
+
             content = content.toLowerCase();
-            content = content.replaceAll("\"[^\"]+\"", ""); //strips out anything in quotes
-            content = content.replaceAll("[^a-zA-Z ]", "");
-            content = content.replaceAll("\r|\n", "");
+            content = content.replaceAll("\"[^\"]+\"", " "); //strips out anything in quotes
+            content = content.replaceAll("[^a-zA-Z ]", " ");
             this.content = content;
+
             in.close();
 
         } catch (FileNotFoundException e) {
@@ -107,6 +119,7 @@ public class MyFile {
             uniqueTotal++;
 
         }
+        this.totalWords = total;
 //        System.out.println("Total:" + total);
 //        System.out.println("uniqueTotal:" + uniqueTotal);
 
