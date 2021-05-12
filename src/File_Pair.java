@@ -16,7 +16,7 @@ public class File_Pair {
     }
 
     public void phraseMatching() {
-        int matchingLength = 4;
+        int matchingLength = 3;
         ArrayList<String> objArray1 = File1.getObjArray();
         ArrayList<String> objArray2 = File2.getObjArray();
         ArrayList<String> objArray11 = new ArrayList<String>();
@@ -65,23 +65,23 @@ public class File_Pair {
                     if (objArray22.contains(objArray11.get(n))) n ++;
                     else break;
                 }
-                n = n - i;
+                n = n - i - 1;
                 int num = n/4;
                 int wnum = n % 4;
                 System.out.println(n);
                 System.out.println(num);
                 System.out.println(wnum);
                 for (int j = 1; j <= num; j ++)     str0 += objArray11.get(j*4+i);
-                for (int j = i + (num+1)*4; j < i + (num+1)*4 + wnum - 1; j ++)    str0 += objArray1.get(j);
+                for (int j = i + (num+1)*4; j <= i + (num+1)*4 + wnum - 1; j ++)    str0 += objArray1.get(j) + " ";
                 System.out.println(str0);
-                outobjArray11.add(k++, "*" + str0 + "*");
+                outobjArray11.add(k++, "<<*" + str0 + "*>>");
                 i = i + (num+1) * 4 + wnum - 1;
             }
              else {
                 if (i == objArray1.size() - matchingLength) {
-                    outobjArray11.add(k++, objArray11.get(i) + "*");
+                    outobjArray11.add(k++, objArray11.get(i) + " ");
                 }else {
-                    outobjArray11.add(k++, " " + objArray1.get(i) + " ");
+                    outobjArray11.add(k++, objArray1.get(i) + " ");
                 }
             }
         }
