@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+//This class is used to store some operation functions
 
 public class OperateTXT {
 

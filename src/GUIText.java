@@ -8,6 +8,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+This class is used to generate interactive windows
+Using swing component in Java
+*/
+
 public class GUIText {
 
     private MyFile[] file;
@@ -15,6 +20,7 @@ public class GUIText {
     JFrame frame = new JFrame("MyCheck");
     Box vBox = Box.createVerticalBox();
 
+    //    Constructors
     public GUIText(MyFile[] file, File_Pair[] fP){
         this.file = file;
         this.fP = fP;
@@ -28,6 +34,7 @@ public class GUIText {
         return fP;
     }
 
+//    main window
     public void mainUI(){
 
         JPanel panel1 = new JPanel();
@@ -41,7 +48,7 @@ public class GUIText {
         vBox.add(showTextFre());
 
         JPanel panel3 = new JPanel();
-        panel3.add(new Label("----Highlight the matching phrase in both files----"));
+        panel3.add(new Label("----Highlight the matching phrase in both files and calculate phrase matching----"));
         vBox.add(panel3);
         vBox.add(showPairText());
 
@@ -54,7 +61,7 @@ public class GUIText {
 
 
     }
-
+//    Finds the specified word frequency in the specified file
     public JPanel showTextFre(){
         JPanel panel = new JPanel();
         final JTextArea filename = new JTextArea(1, 10);
@@ -96,6 +103,7 @@ public class GUIText {
         return panel;
     }
 
+//    Displays the frequency of words in a file
     public JPanel findWordFre(){
 
         JPanel panel = new JPanel();
@@ -132,6 +140,7 @@ public class GUIText {
 
     }
 
+//    Highlight the matching phrase in both files
     public JPanel showPairText() {
 
         JPanel panel = new JPanel();

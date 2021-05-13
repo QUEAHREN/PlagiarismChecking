@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+This class is used to hold a pair of files
+*/
+
 public class File_Pair {
 
     private MyFile File1;
@@ -23,7 +27,7 @@ public class File_Pair {
     private double phrase_Match_1_2;
     private double phrase_Match_2_1;
 
-
+    //    Constructors
     public File_Pair(MyFile File1, MyFile File2){
         this.File1 = File1;
         this.File2 = File2;
@@ -73,6 +77,8 @@ public class File_Pair {
         return matchPhrase2;
     }
 
+
+//    phrase Match
     public void phraseMatching(int matchingLength) {
 
         this.matchPhrase1 = new ArrayList<String>();
@@ -126,6 +132,8 @@ public class File_Pair {
                 phrase2.add(objArray22.get(i));
                 for (int p = 0; p < matchingLength; p ++)   flag2[i+p] = 1;
             }
+
+        //        Here is the test code.
 //                System.out.println(objArray11.get(i));
 //                String str0 = "";
 //                str0 += objArray11.get(i);
@@ -160,11 +168,6 @@ public class File_Pair {
 //        }
 
 
-
-
-
-
-        //转成文字
         StringBuilder str0 = new StringBuilder();
         String str1 = "";
         StringBuilder str2 = new StringBuilder();

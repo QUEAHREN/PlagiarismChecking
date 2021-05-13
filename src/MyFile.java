@@ -50,7 +50,7 @@ public class MyFile {
         }
     }
 
-
+//    Read file
     public void conRead(String File_Name) {
         try {
             BufferedReader in = new BufferedReader(new FileReader(File_Name));
@@ -65,8 +65,9 @@ public class MyFile {
 
             this.originalContent = content;
 
+//          strips out anything in quotes
             content = content.toLowerCase();
-            content = content.replaceAll("\"[^\"]+\"", " "); //strips out anything in quotes
+            content = content.replaceAll("\"[^\"]+\"", " ");
             content = content.replaceAll("[^a-zA-Z ]", " ");
             this.content = content;
 
@@ -79,6 +80,7 @@ public class MyFile {
         }
     }
 
+//    Count the frequency of words
     public void countFrequency() {
 
         String[] spilt = this.content.split(" ");
@@ -99,25 +101,22 @@ public class MyFile {
         }
         Comparator<Map.Entry<String, Integer>> valueComparator = new Comparator<Map.Entry<String,Integer>>() {
             public int compare(Map.Entry<String, Integer> o1,Map.Entry<String, Integer> o2) {
-                /*return o1.getValue ()-o2.getValue ();// 升序排序 */
-                return o2.getValue() - o1.getValue();// 降序排序
+                /*return o1.getValue ()-o2.getValue ();// Ascending sort */
+                return o2.getValue() - o1.getValue();// Descending sort
             }
         };
 
-        // map转换成list进行排序，Entry是Map中的一个静态内部类，用来表示Map中的每个键值对，
-        //除非使用了静态导入import static java.util.Map.*，否则Map不可以省略。
-        // map.EntrySet(),实现了Set接口，里面存放的是键值对.
+        //Map is converted to list for sorting. Entry is a static internal class in map, which is used to represent each key value pair in map,
+        //Map cannot be omitted unless you use static import static Java. Util. Map. *.
+        //map. Entryset () implements the set interface, which stores key value pairs
         list = new ArrayList<Map.Entry<String,Integer>>(frequency.entrySet());
 
         Collections.sort(list, valueComparator);
-//        System.out.println("------------map 按照 value 降序排序 --------------------");
 
-        int total = 0, uniqueTotal = 0;
+        int total = 0;
 
         for (Map.Entry<String, Integer> entry : list) {
             total += entry.getValue();
-            uniqueTotal++;
-
         }
         this.totalWords = total;
 //        System.out.println("Total:" + total);
@@ -125,8 +124,10 @@ public class MyFile {
 
 
     }
+//    Find the frequency of a specific word
     public int findWordFrequency(String keyword){
         if (frequency.get(keyword) == null) return -1;
         return frequency.get(keyword);
     }
+
 }
