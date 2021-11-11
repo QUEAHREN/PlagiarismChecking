@@ -1,5 +1,5 @@
 # Plagiarism Checking
-
+### The Hitchhiker's Guide to Plagiarism Checking
 ## 一点感想
 - 兰卡斯特大学(LU) 的软件课设，一个简单的抄袭检测系统
 - GUI 使用 Swing 实现，由于给出了要求的查重算法（词频还有短语查重），所以算法不难，主要是考验软件的设计与UI呈现
